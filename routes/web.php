@@ -1,0 +1,55 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\GalleryController as AdminGallery;
+use App\Http\Controllers\Admin\SettingController as AdminSetting;
+use App\Http\Controllers\Admin\UserController as AdminUser;
+
+// ==========================================
+// 1. PUBLIC ROUTES
+// ==========================================
+Route::get('/', [PublicController::class, 'index'])->name('home');
+Route::get('/about', [PublicController::class, 'about'])->name('about');
+Route::get('/gallery', [PublicController::class, 'gallery'])->name('gallery');
+Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+
+// ==========================================
+// 2. AUTH ROUTES (Custom Auth)
+// ==========================================
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// ==========================================
+// 3. USER ROUTES (Terproteksi Auth - Role User)
+// ==========================================
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
+});
+
+// ==========================================
+// 4. ADMIN ROUTES (Terproteksi AdminAuth)
+// ==========================================
+Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
+    
+    // CRUD Gallery
+    Route::resource('gallery', AdminGallery::class);
+
+    // Manajemen User
+    Route::resource('users', AdminUser::class);
+
+    // Setting Sekolah
+    Route::get('/settings', [AdminSetting::class, 'index'])->name('settings.index');
+    Route::put('/settings', [AdminSetting::class, 'update'])->name('settings.update');
+});
