@@ -11,6 +11,7 @@
                 <div class="d-flex gap-3">
                     <a href="{{ route('about') }}" class="btn btn-primary">Tentang Kami</a>
                     <a href="{{ route('gallery') }}" class="btn btn-outline-secondary">Galeri</a>
+                    <a href="{{ route('ppdb.info') }}" class="btn btn-success">PPDB</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
