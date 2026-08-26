@@ -119,13 +119,9 @@ php artisan key:generate
 ```
 
 ### 6. Migrasi & Seeder Database
-Jalankan migrasi database untuk membuat tabel-tabel yang diperlukan:
+Jalankan migrasi database dan seeder untuk membuat tabel serta akun Admin default:
 ```bash
-php artisan migrate
-```
-*(Opsional)* Jalankan seeder jika ada data sampel awal:
-```bash
-php artisan db:seed
+php artisan migrate --seed
 ```
 
 ### 7. Buat Symbolic Link Storage
@@ -145,6 +141,20 @@ npm run dev
 ```
 
 Akses aplikasi melalui browser di alamat: `http://127.0.0.1:8000`
+
+---
+
+## 🔑 Akun Akses Default (Default Credentials)
+
+Untuk mengakses halaman **Dashboard Admin**, gunakan akun default yang telah disediakan pada database (seeder):
+
+- **URL Login**: `http://127.0.0.1:8000/login`
+- **Email**: `admin@sekolah.sch.id`
+- **Password**: `password123`
+- **Role**: `admin`
+
+> [!NOTE]
+> Pendaftaran akun baru secara mandiri melalui halaman `/register` publik secara otomatis mendapatkan role **`user`**. Untuk membuat akun admin baru tambahan, gunakan akun admin di atas lalu masuk ke menu **Admin Panel -> Users -> Tambah User** (pilih Role: `admin`).
 
 ---
 

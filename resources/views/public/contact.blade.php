@@ -44,6 +44,62 @@
             </div>
         </div>
 
+        <!-- Media Sosial Resmi -->
+        @if(!empty($settings['facebook_url']) || !empty($settings['instagram_url']) || !empty($settings['linkedin_url']))
+        <div class="mb-5">
+            <h4 class="fw-bold mb-3 text-center">Media Sosial Resmi</h4>
+            <div class="row g-3 justify-content-center">
+                @if(!empty($settings['facebook_url']))
+                <div class="col-md-4">
+                    <a href="{{ $settings['facebook_url'] }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+                        <div class="card-body d-flex align-items-center p-3">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px;">
+                                <i class="bi bi-facebook fs-4"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h6 class="fw-bold mb-0 text-dark">Facebook</h6>
+                                <small class="text-muted text-truncate d-block">{{ $settings['facebook_url'] }}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endif
+
+                @if(!empty($settings['instagram_url']))
+                <div class="col-md-4">
+                    <a href="{{ $settings['instagram_url'] }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+                        <div class="card-body d-flex align-items-center p-3">
+                            <div class="rounded-circle text-white d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">
+                                <i class="bi bi-instagram fs-4"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h6 class="fw-bold mb-0 text-dark">Instagram</h6>
+                                <small class="text-muted text-truncate d-block">{{ $settings['instagram_url'] }}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endif
+
+                @if(!empty($settings['linkedin_url']))
+                <div class="col-md-4">
+                    <a href="{{ $settings['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+                        <div class="card-body d-flex align-items-center p-3">
+                            <div class="rounded-circle text-white d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background-color: #0a66c2;">
+                                <i class="bi bi-linkedin fs-4"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h6 class="fw-bold mb-0 text-dark">LinkedIn</h6>
+                                <small class="text-muted text-truncate d-block">{{ $settings['linkedin_url'] }}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endif
+            </div>
+        </div>
+        @endif
+
         <div class="card border-0 shadow-sm">
             <div class="card-body p-0">
                 <div class="ratio ratio-16x9 rounded-top overflow-hidden">
@@ -62,19 +118,6 @@
                         <h5 class="fw-bold mb-1">Lokasi Sekolah</h5>
                         <p class="text-muted small mb-0">{{ $settings['address'] ?? 'Alamat sekolah belum diatur.' }}</p>
                     </div>
-                    @if(!empty($settings['facebook_url']) || !empty($settings['instagram_url']) || !empty($settings['linkedin_url']))
-                        <div class="d-flex gap-2">
-                            @if(!empty($settings['facebook_url']))
-                                <a href="{{ $settings['facebook_url'] }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm"><i class="bi bi-facebook me-1"></i> Facebook</a>
-                            @endif
-                            @if(!empty($settings['instagram_url']))
-                                <a href="{{ $settings['instagram_url'] }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-danger btn-sm"><i class="bi bi-instagram me-1"></i> Instagram</a>
-                            @endif
-                            @if(!empty($settings['linkedin_url']))
-                                <a href="{{ $settings['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm"><i class="bi bi-linkedin me-1"></i> LinkedIn</a>
-                            @endif
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

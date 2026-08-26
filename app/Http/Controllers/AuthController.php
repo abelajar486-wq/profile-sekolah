@@ -50,7 +50,6 @@ class AuthController extends Controller
             'email'       => 'required|email|unique:users,email',
             'alamat'      => 'nullable|string|max:500',
             'password'    => 'required|min:6|confirmed',
-            'role'        => 'required|in:admin,user',
             'is_verified' => 'nullable|in:0,1',
         ]);
 
@@ -60,19 +59,14 @@ class AuthController extends Controller
             'email'             => $request->email,
             'alamat'            => $request->alamat,
             'password'          => Hash::make($request->password),
-            'role'              => $request->role,
+            'role'              => 'user', // Role otomatis 'user' untuk keamanan standar web
             'email_verified_at' => $request->is_verified == '1' ? now() : null,
         ]);
 
         Auth::login($user);
+        session()->forget('is_admin');
 
-        if ($user->role === 'admin') {
-            session(['is_admin' => true]);
-            return redirect()->route('admin.dashboard')->with('success', 'Registrasi Admin berhasil!');
-        } else {
-            session()->forget('is_admin');
-            return redirect()->route('user.dashboard')->with('success', 'Registrasi User berhasil!');
-        }
+        return redirect()->route('user.dashboard')->with('success', 'Registrasi akun berhasil!');
     }
 
     public function logout(Request $request)

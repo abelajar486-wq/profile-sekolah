@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $settings['school_name'] ?? 'Website Profil Sekolah' }}</title>
+    <title>@hasSection('title') @yield('title') - @endif{{ $settings['school_name'] ?? 'Website Profil Sekolah' }}</title>
+    @if(!empty($settings['school_logo']))
+        <link rel="icon" href="{{ asset('storage/' . $settings['school_logo']) }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('storage/' . $settings['school_logo']) }}" type="image/x-icon">
+    @endif
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>

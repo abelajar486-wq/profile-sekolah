@@ -44,14 +44,7 @@
                             <input type="password" name="password_confirmation" class="form-control" placeholder="Ulangi password" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Daftar Sebagai (Role)</label>
-                            <select name="role" class="form-select @error('role') is-invalid @enderror" required>
-                                <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User / Siswa</option>
-                                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin Sekolah</option>
-                            </select>
-                            @error('role')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
+
 
                         <div class="mb-3">
                             <label class="form-label">Status Verifikasi Email</label>
