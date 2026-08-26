@@ -6,12 +6,12 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-5 text-center">
                 @if(!empty($settings['school_logo']))
-                    <img src="{{ asset('storage/' . $settings['school_logo']) }}" alt="Logo Sekolah" class="rounded-circle shadow" style="width: 220px; height: 220px; object-fit: cover;">
-                @else
-                    <div class="rounded-circle shadow bg-light d-inline-flex align-items-center justify-content-center" style="width: 220px; height: 220px;">
-                        <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>
-                    </div>
-                @endif
+    <img src="{{ asset('storage/' . $settings['school_logo']) }}" alt="Logo Sekolah" class="rounded-circle shadow" style="width: 220px; height: 220px; object-fit: cover;">
+@else
+    <div class="rounded-circle shadow bg-light d-inline-flex align-items-center justify-content-center" style="width: 220px; height: 220px;">
+        <svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>
+    </div>
+@endif
             </div>
             <div class="col-lg-7">
                 <h1 class="fw-bold mb-3">Tentang {{ $settings['school_name'] ?? 'Sekolah Kami' }}</h1>

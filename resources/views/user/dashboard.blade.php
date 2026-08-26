@@ -18,13 +18,13 @@
         <hr>
         <div class="row">
             <div class="col-md-4 mb-3">
-                @if(!empty($settings['school_logo']))
-                    <img src="{{ asset('storage/' . $settings['school_logo']) }}" alt="Logo Sekolah" class="img-fluid" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-                @else
-                    <div class="bg-light d-flex align-items-center justify-content-center rounded-circle" style="width: 150px; height: 150px; margin: 0 auto;">
-                        <span class="text-muted">Belum ada logo</span>
-                    </div>
-                @endif
+               @if(!empty($settings['school_logo']))
+    <img src="{{ asset('storage/' . $settings['school_logo']) }}" alt="Logo Sekolah" class="img-fluid" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+@else
+    <div class="bg-light d-flex align-items-center justify-content-center rounded-circle" style="width: 150px; height: 150px; margin: 0 auto;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>
+    </div>
+@endif
             </div>
             <div class="col-md-8">
                 <table class="table table-borderless">

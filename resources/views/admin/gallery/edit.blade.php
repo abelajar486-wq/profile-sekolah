@@ -30,7 +30,13 @@
             <div class="mb-3">
                 <label class="form-label d-block">Gambar Saat Ini</label>
                 <div class="mb-2">
-                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}" class="img-thumbnail" style="max-height: 150px; object-fit: cover;">
+                    @if(!empty($gallery->image))
+                        <img src="{{ asset('storage/' . $gallery->image) }}" alt="{{ $gallery->title }}" class="img-thumbnail" style="max-height: 150px; object-fit: cover;">
+                    @else
+                        <div class="bg-light d-flex align-items-center justify-content-center rounded" style="width: 150px; height: 150px;">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        </div>
+                    @endif
                 </div>
                 <label class="form-label text-muted">Ganti Gambar (Biarkan kosong jika tidak ingin mengubah gambar)</label>
                 <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*">
