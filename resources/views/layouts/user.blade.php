@@ -28,7 +28,7 @@
         .card,
         .alert,
         .table tbody tr {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-pills .nav-link {
@@ -36,7 +36,7 @@
             border-radius: 0.5rem;
             padding: 0.6rem 1rem;
             margin-bottom: 0.25rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-pills .nav-link::before {
@@ -49,13 +49,13 @@
             height: 70%;
             background: var(--accent);
             border-radius: 0 4px 4px 0;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 0 10px var(--accent-glow);
         }
 
         .nav-pills .nav-link:hover {
             background: rgba(255, 255, 255, 0.08);
-            transform: translateX(4px);
+            transform: translateX(5px);
             color: #fff !important;
         }
 
@@ -74,14 +74,13 @@
         }
 
         .card {
-            animation: fadeInUp 0.5s ease forwards;
-            opacity: 0;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(24px);
             }
             to {
                 opacity: 1;
@@ -90,22 +89,22 @@
         }
 
         .table tbody tr {
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .table tbody tr:hover {
             background: rgba(13, 110, 253, 0.05);
-            transform: scale(1.005);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            transform: scale(1.006);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
         }
 
         .btn {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
         }
 
         .btn:active {
@@ -113,7 +112,7 @@
         }
 
         .alert {
-            animation: slideInDown 0.4s ease forwards;
+            animation: slideInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes slideInDown {
@@ -135,12 +134,12 @@
         }
 
         .stat-card {
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .stat-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
         }
 
         @keyframes fadeIn {
