@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Gallery;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,8 +12,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::pluck('value', 'key')->toArray();
-        $galleries = Gallery::latest()->paginate(10);
-        return view('admin.settings.index', compact('settings', 'galleries'));
+        return view('admin.settings.index', compact('settings'));
     }
 
     public function update(Request $request)
