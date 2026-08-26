@@ -55,6 +55,7 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
     Route::resource('gallery', AdminGallery::class);
 
     // Manajemen User
+    Route::patch('/users/{user}/toggle-verification', [AdminUser::class, 'toggleVerification'])->name('users.toggle-verification');
     Route::resource('users', AdminUser::class);
 
     // Setting Sekolah

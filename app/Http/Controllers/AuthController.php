@@ -45,21 +45,23 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name'     => 'required|string|max:255',
-            'username' => 'nullable|string|max:255|unique:users,username',
-            'email'    => 'required|email|unique:users,email',
-            'alamat'   => 'nullable|string|max:500',
-            'password' => 'required|min:6|confirmed',
-            'role'     => 'required|in:admin,user',
+            'name'        => 'required|string|max:255',
+            'username'    => 'nullable|string|max:255|unique:users,username',
+            'email'       => 'required|email|unique:users,email',
+            'alamat'      => 'nullable|string|max:500',
+            'password'    => 'required|min:6|confirmed',
+            'role'        => 'required|in:admin,user',
+            'is_verified' => 'nullable|in:0,1',
         ]);
 
         $user = User::create([
-            'name'     => $request->name,
-            'username' => $request->username,
-            'email'    => $request->email,
-            'alamat'   => $request->alamat,
-            'password' => Hash::make($request->password),
-            'role'     => $request->role,
+            'name'              => $request->name,
+            'username'          => $request->username,
+            'email'             => $request->email,
+            'alamat'            => $request->alamat,
+            'password'          => Hash::make($request->password),
+            'role'              => $request->role,
+            'email_verified_at' => $request->is_verified == '1' ? now() : null,
         ]);
 
         Auth::login($user);

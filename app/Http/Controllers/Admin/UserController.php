@@ -43,15 +43,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'username' => 'nullable|string|max:255|unique:users,username',
-            'email'    => 'required|email|unique:users,email',
-            'alamat'   => 'nullable|string|max:500',
-            'password' => 'required|min:6|confirmed',
-            'role'     => 'required|in:admin,user',
+            'name'        => 'required|string|max:255',
+            'username'    => 'nullable|string|max:255|unique:users,username',
+            'email'       => 'required|email|unique:users,email',
+            'alamat'      => 'nullable|string|max:500',
+            'password'    => 'required|min:6|confirmed',
+            'role'        => 'required|in:admin,user',
+            'is_verified' => 'nullable|in:0,1',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
+        $validated['email_verified_at'] = ($request->is_verified == '1') ? now() : null;
+        unset($validated['is_verified']);
 
         User::create($validated);
 
@@ -72,18 +75,24 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'username' => 'nullable|string|max:255|unique:users,username,' . $user->id,
-            'email'    => 'required|email|unique:users,email,' . $user->id,
-            'alamat'   => 'nullable|string|max:500',
-            'password' => 'nullable|min:6|confirmed',
-            'role'     => 'required|in:admin,user',
+            'name'        => 'required|string|max:255',
+            'username'    => 'nullable|string|max:255|unique:users,username,' . $user->id,
+            'email'       => 'required|email|unique:users,email,' . $user->id,
+            'alamat'      => 'nullable|string|max:500',
+            'password'    => 'nullable|min:6|confirmed',
+            'role'        => 'required|in:admin,user',
+            'is_verified' => 'nullable|in:0,1',
         ]);
 
-        if ($validated['password']) {
+        if (!empty($validated['password'])) {
             $validated['password'] = Hash::make($validated['password']);
         } else {
             unset($validated['password']);
+        }
+
+        if (isset($validated['is_verified'])) {
+            $validated['email_verified_at'] = ($validated['is_verified'] == '1') ? ($user->email_verified_at ?? now()) : null;
+            unset($validated['is_verified']);
         }
 
         $user->update($validated);
@@ -92,10 +101,30 @@ class UserController extends Controller
     }
 
     /**
+     * Toggle status verifikasi email user.
+     */
+    public function toggleVerification(User $user)
+    {
+        if ($user->email_verified_at) {
+            $user->update(['email_verified_at' => null]);
+            $status = 'dibatalkan verifikasinya';
+        } else {
+            $user->update(['email_verified_at' => now()]);
+            $status = 'berhasil diverifikasi';
+        }
+
+        return redirect()->back()->with('success', "Status email {$user->name} {$status}!");
+    }
+
+    /**
      * Remove the specified user from storage.
      */
     public function destroy(User $user)
     {
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.users.index')->with('error', 'User dengan role admin tidak dapat dihapus!');
+        }
+
         if ($user->id === auth()->id()) {
             return redirect()->route('admin.users.index')->with('error', 'Tidak dapat menghapus akun sendiri!');
         }

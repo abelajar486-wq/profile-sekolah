@@ -216,7 +216,7 @@
 
             <!-- Tombol Logout & Kembali ke Public -->
             <div class="pt-3 border-top">
-                <a href="{{ route('home') }}" class="btn btn-outline-light w-100 mb-2">Lihat Web Public</a>
+                <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light w-100 mb-2">Lihat Web Public</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger w-100">Logout</button>

@@ -167,7 +167,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('home') }}" class="nav-link text-white {{ request()->routeIs('home') ? 'active' : '' }}">
+                        <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer" class="nav-link text-white {{ request()->routeIs('home') ? 'active' : '' }}">
                             <svg class="me-2" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                             Beranda
                         </a>
@@ -188,7 +188,7 @@
             </div>
 
             <div class="pt-3 border-top">
-                <a href="{{ route('home') }}" class="btn btn-outline-light w-100 mb-2">Lihat Web Public</a>
+                <a href="{{ route('home') }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light w-100 mb-2">Lihat Web Public</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger w-100">Logout</button>

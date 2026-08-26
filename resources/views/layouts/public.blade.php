@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $settings['school_name'] ?? 'Website Profil Sekolah' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         html {
             scroll-behavior: smooth;
@@ -123,8 +124,23 @@
     </main>
 
     <!-- Class mt-auto akan mendorong footer ke posisi paling bawah layar -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <p class="m-0">&copy; {{ date('Y') }} {{ $settings['school_name'] ?? 'Sekolah Kita' }}. All rights reserved.</p>
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+        <div class="container">
+            @if(!empty($settings['facebook_url']) || !empty($settings['instagram_url']) || !empty($settings['linkedin_url']))
+                <div class="d-flex justify-content-center gap-3 mb-2">
+                    @if(!empty($settings['facebook_url']))
+                        <a href="{{ $settings['facebook_url'] }}" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none fs-5 hover-white" title="Facebook"><i class="bi bi-facebook"></i></a>
+                    @endif
+                    @if(!empty($settings['instagram_url']))
+                        <a href="{{ $settings['instagram_url'] }}" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none fs-5 hover-white" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    @endif
+                    @if(!empty($settings['linkedin_url']))
+                        <a href="{{ $settings['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none fs-5 hover-white" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    @endif
+                </div>
+            @endif
+            <p class="m-0 small text-white-50">&copy; {{ date('Y') }} {{ $settings['school_name'] ?? 'Sekolah Kita' }}. All rights reserved.</p>
+        </div>
     </footer>
 
 </body>

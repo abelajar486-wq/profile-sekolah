@@ -7,7 +7,6 @@
         <p class="lead">Selamat datang, <strong>{{ Auth::user()->name ?? 'User' }}</strong>!</p>
         <hr>
         <div class="d-flex gap-2">
-            <a href="{{ route('home') }}" class="btn btn-primary">Kembali ke Beranda</a>
             <a href="{{ route('user.profile') }}" class="btn btn-secondary">Edit Profil</a>
             <a href="{{ route('user.ppdb.status') }}" class="btn btn-success">PPDB</a>
         </div>

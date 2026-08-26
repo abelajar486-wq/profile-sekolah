@@ -20,7 +20,12 @@ class SettingController extends Controller
         $data = $request->validate([
             'school_name'    => 'required|string|max:255',
             'contact_number' => 'required|string|max:50',
+            'school_email'   => 'nullable|email|max:255',
             'address'        => 'required|string',
+            'maps_embed'     => 'nullable|string',
+            'facebook_url'   => 'nullable|string|max:255',
+            'instagram_url'  => 'nullable|string|max:255',
+            'linkedin_url'   => 'nullable|string|max:255',
             'logo'           => 'nullable|image|mimes:jpg,jpeg,png,gif,webp,bmp,svg|max:2048',
         ]);
 

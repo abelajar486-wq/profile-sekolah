@@ -37,5 +37,6 @@ class User extends Authenticatable
         'role',
         'username',
         'alamat',
+        'email_verified_at',
     ];
 }

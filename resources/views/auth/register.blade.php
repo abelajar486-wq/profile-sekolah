@@ -45,13 +45,22 @@
                         </div>
 
                         <div class="mb-3">
-                        <label class="form-label">Daftar Sebagai (Role)</label>
-                        <select name="role" class="form-select @error('role') is-invalid @enderror" required>
-                        <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User / Siswa</option>
-                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin Sekolah</option>
-                        </select>
-                        @error('role')<div class="invalid-feedback">{{ $message }}</div>@enderror
-</div>
+                            <label class="form-label">Daftar Sebagai (Role)</label>
+                            <select name="role" class="form-select @error('role') is-invalid @enderror" required>
+                                <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User / Siswa</option>
+                                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin Sekolah</option>
+                            </select>
+                            @error('role')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Status Verifikasi Email</label>
+                            <select name="is_verified" class="form-select @error('is_verified') is-invalid @enderror">
+                                <option value="0" {{ old('is_verified', '0') == '0' ? 'selected' : '' }}>Belum Verifikasi</option>
+                                <option value="1" {{ old('is_verified') == '1' ? 'selected' : '' }}>Langsung Terverifikasi</option>
+                            </select>
+                            @error('is_verified')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        </div>
 
                         <button type="submit" class="btn btn-dark w-100">Daftar Sekarang</button>
                     </form>

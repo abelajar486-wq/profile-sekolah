@@ -67,6 +67,17 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label class="form-label fw-bold">Status Verifikasi Email <span class="text-danger">*</span></label>
+                <select name="is_verified" class="form-select @error('is_verified') is-invalid @enderror" required>
+                    <option value="0" {{ old('is_verified', '0') == '0' ? 'selected' : '' }}>Belum Verifikasi</option>
+                    <option value="1" {{ old('is_verified') == '1' ? 'selected' : '' }}>Terverifikasi</option>
+                </select>
+                @error('is_verified')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-success px-4">Simpan User</button>
         </form>
     </div>
