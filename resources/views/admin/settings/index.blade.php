@@ -17,10 +17,16 @@
             <div class="mb-3">
                 <label class="form-label fw-bold">Logo Sekolah</label>
                 @if(!empty($settings['school_logo']))
-                    <div class="mb-2">
-                        <img src="{{ asset('storage/' . $settings['school_logo']) }}" alt="Logo Sekolah" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-                    </div>
-                @endif
+    <div class="mb-2">
+        <img src="{{ asset('storage/' . $settings['school_logo']) }}" alt="Logo Sekolah" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+    </div>
+@else
+    <div class="mb-2">
+        <div class="bg-light d-flex align-items-center justify-content-center rounded-circle" style="width: 120px; height: 120px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>
+        </div>
+    </div>
+@endif
                 <input type="file" name="logo" class="form-control" accept="image/*">
                 @if(!empty($settings['school_logo']))
                     <div class="form-text">Kosongkan jika tidak ingin mengganti logo.</div>
@@ -70,7 +76,11 @@
                     <tr>
                         <td class="text-center">{{ $galleries->firstItem() + $index }}</td>
                         <td class="text-center">
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="img-thumbnail" style="max-height: 70px; object-fit: cover;">
+                            @if(!empty($item->image))
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="img-thumbnail" style="max-height: 70px; object-fit: cover;">
+                            @else
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            @endif
                         </td>
                         <td>{{ $item->title }}</td>
                         <td>{{ $item->description ?? '-' }}</td>

@@ -1,58 +1,170 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏫 Website Profile Sekolah & Sistem PPDB Online
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-## About Laravel
+Aplikasi web modern, responsif, dan kaya fitur untuk **Website Profil Sekolah & Sistem Penerimaan Peserta Didik Baru (PPDB) Online** berbasis **Laravel Framework**. Aplikasi ini dirancang untuk menyajikan informasi profil sekolah secara profesional sekaligus mengelola proses pendaftaran calon siswa baru secara efektif.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama (Key Features)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🌐 1. Halaman Publik (Public Portal)
+- **Beranda (Home)**: Tampilan hero banner interaktif, keunggulan sekolah, sambutan kepala sekolah, dan ringkasan galeri terbaru.
+- **Tentang Kami (About)**: Informasi lengkap profil sekolah, sejarah singkat, serta Visi & Misi lembaga.
+- **Galeri Foto (Gallery)**: Katalog foto kegiatan dan fasilitas sekolah dengan tata letak grid responsif & *pagination*.
+- **Kontak (Contact)**: Alamat sekolah, kontak telepon, email, serta peta lokasi.
+- **Informasi PPDB**: Informasi alur pendaftaran, persyaratan, serta jadwal penerimaan siswa baru.
+- **Formulir PPDB Online**: Formulir pendaftaran mandiri calon siswa baru yang terintegrasi secara *real-time*.
 
-## Learning Laravel
+### 👤 2. Portal Siswa / Calon Pendaftar (User Portal)
+- **Autentikasi User**: Fitur Register & Login akun calon siswa.
+- **User Dashboard**: Pemantauan status pendaftaran PPDB secara *real-time* (`Pending`, `Diterima`, atau `Ditolak`).
+- **Kelola Profil Pengguna**: Fitur pembaruan informasi profil akun pribadi.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🛡️ 3. Panel Administrator (Admin Dashboard & Management)
+- **Dashboard Overview**: Ringkasan statistik jumlah pendaftar PPDB, galeri foto, dan total akun terdaftar.
+- **Manajemen Galeri**: Tambah, edit, dan hapus foto dokumentasi kegiatan sekolah (CRUD).
+- **Manajemen Pengguna**: Pengelolaan akun admin & user (Role-Based Access Control).
+- **Pengaturan Sekolah (Dynamic Settings)**: Pengaturan Nama Sekolah, Alamat, No. Telepon, Email, Visi, Misi, dan Logo yang terintegrasi secara otomatis ke seluruh halaman web & cetakan dokumen.
+- **Manajemen PPDB & Seleksi**:
+  - Filter data pendaftar berdasarkan status seleksi (`Pending`, `Diterima`, `Ditolak`).
+  - Fitur pencarian cepat (Nama, NISN, Asal Sekolah, Jurusan).
+  - Verifikasi pendaftaran dan pemberian catatan khusus dari admin/panitia.
+  - **Export PDF Profesional**: Cetak rekapitulasi data pendaftar ke format PDF (A4 Landscape) dengan Kop Surat Resmi Sekolah, Kartu Ringkasan Data, dan tabel rapi (`barryvdh/laravel-dompdf`).
+  - **Export Excel Custom**: Download data pendaftar ke file Excel (`.xlsx`) berformat rapi lengkap dengan header sekolah (`maatwebsite/excel`).
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🛠️ Teknologi & Depedensi (Tech Stack)
 
-## Agentic Development
+- **Backend Framework**: [Laravel 11 / 12](https://laravel.com) (PHP 8.3+)
+- **Frontend**: Blade Templating Engine, Custom CSS / Bootstrap & SB Admin 2
+- **Database**: MySQL / MariaDB / SQLite
+- **Export PDF**: `barryvdh/laravel-dompdf`
+- **Export Excel**: `maatwebsite/excel`
+- **Asset Bundler**: Vite / NPM
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## 📁 Struktur Direktori Utama
 
-php artisan boost:install
+```
+profile-sekolah/
+├── app/
+│   ├── Exports/            # Class Export Excel (PpdbExport)
+│   ├── Http/
+│   │   ├── Controllers/   # PublicController, AuthController, UserController, Admin Controllers
+│   │   └── Middleware/    # AdminAuth & Auth Middleware
+│   └── Models/            # User, Gallery, Setting, PpdbRegistration
+├── database/
+│   ├── migrations/        # Skema Database (Users, Galleries, Settings, PPDB)
+│   └── seeders/           # Seeder Data Awal
+├── public/                # Asset Publik (Gambar Upload, CSS, JS)
+├── resources/
+│   ├── views/
+│   │   ├── admin/         # View Dashboard Admin (Gallery, PPDB, Settings, Users)
+│   │   ├── public/        # View Website Publik (Home, About, Gallery, Contact)
+│   │   └── user/          # View Dashboard User/Siswa
+├── routes/
+│   └── web.php            # Routing Aplikasi (Public, Auth, User, Admin)
+└── storage/               # File Storage (Upload Foto & Dokumen Export)
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🚀 Panduan Instalasi (Getting Started)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ikuti langkah-langkah di bawah ini untuk menjalankan project ini di komputer lokal Anda:
 
-## Code of Conduct
+### 1. Prasyarat Sistem
+- PHP >= 8.3
+- Composer >= 2.x
+- Node.js & NPM
+- Database MySQL / MariaDB
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Clone Repository
+```bash
+git clone https://github.com/username/repository-name.git
+cd profile-sekolah
+```
 
-## Security Vulnerabilities
+### 3. Install Dependensi PHP & NPM
+```bash
+composer install
+npm install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Konfigurasi Environment (`.env`)
+Salin file `.env.example` menjadi `.env`:
+```bash
+cp .env.example .env
+```
+Buka file `.env` dan sesuaikan konfigurasi koneksi database Anda:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_profile_sekolah
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## License
+### 5. Generate Application Key
+```bash
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 6. Migrasi & Seeder Database
+Jalankan migrasi database untuk membuat tabel-tabel yang diperlukan:
+```bash
+php artisan migrate
+```
+*(Opsional)* Jalankan seeder jika ada data sampel awal:
+```bash
+php artisan db:seed
+```
+
+### 7. Buat Symbolic Link Storage
+Agar file upload (foto galeri & logo sekolah) dapat diakses di halaman web:
+```bash
+php artisan storage:link
+```
+
+### 8. Jalankan Server Lokal
+Jalankan server aplikasi Laravel dan asset bundler Vite:
+```bash
+php artisan serve
+```
+Buka terminal kedua dan jalankan:
+```bash
+npm run dev
+```
+
+Akses aplikasi melalui browser di alamat: `http://127.0.0.1:8000`
+
+---
+
+## 📄 Fitur Ekspor Dokumen PPDB
+
+Aplikasi dilengkapi dengan sistem rekapitulasi data pendaftar yang siap cetak:
+
+1. **Pencetakan PDF**:
+   - Format kertas A4 Landscape.
+   - Kop Surat Resmi Sekolah dinamis (Nama Sekolah, Alamat, Kontak dari Pengaturan).
+   - Ringkasan Statistik Data (Total Pendaftar, Diterima, Pending, Ditolak).
+2. **Ekspor Excel**:
+   - Format `.xlsx` berdesain bersih.
+   - Format angka NISN & No HP dipertahankan sebagai teks agar tidak berubah format.
+
+---
+
+## 📝 Lisensi
+
+Aplikasi ini bersifat open-source di bawah lisensi [MIT License](LICENSE).
+
+---
+<p align="center">Dibuat untuk mendukung digitalisasi sistem informasi sekolah 🚀</p>

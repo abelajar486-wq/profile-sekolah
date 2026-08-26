@@ -65,4 +65,6 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
     Route::get('/ppdb', [AdminPpdb::class, 'index'])->name('ppdb.index');
     Route::get('/ppdb/{ppdb}', [AdminPpdb::class, 'show'])->name('ppdb.show');
     Route::put('/ppdb/{ppdb}', [AdminPpdb::class, 'update'])->name('ppdb.update');
+    Route::get('/ppdb/export/pdf', [AdminPpdb::class, 'exportPdf'])->name('ppdb.export.pdf');
+    Route::get('/ppdb/export/excel', [AdminPpdb::class, 'exportExcel'])->name('ppdb.export.excel');
 });
