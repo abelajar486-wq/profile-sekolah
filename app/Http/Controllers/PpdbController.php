@@ -15,7 +15,7 @@ class PpdbController extends Controller
 
     public function create()
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk mendaftar PPDB.');
         }
 
@@ -31,23 +31,23 @@ class PpdbController extends Controller
 
     public function store(Request $request)
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu untuk mendaftar PPDB.');
         }
 
         $user = Auth::user();
 
         $validated = $request->validate([
-            'nisn'           => 'required|string|size:10|unique:ppdb_registrations,nisn',
-            'nama_lengkap'   => 'required|string|max:255',
-            'tempat_lahir'   => 'required|string|max:255',
-            'tanggal_lahir'  => 'required|date',
-            'jenis_kelamin'  => 'required|in:L,P',
-            'alamat'         => 'required|string',
-            'asal_sekolah'   => 'required|string|max:255',
-            'nama_ortu'      => 'required|string|max:255',
-            'no_hp_ortu'     => 'required|string|max:20',
-            'jurusan_pilihan'=> 'required|string|max:100',
+            'nisn' => 'required|string|size:10|unique:ppdb_registrations,nisn',
+            'nama_lengkap' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'alamat' => 'required|string',
+            'asal_sekolah' => 'required|string|max:255',
+            'nama_ortu' => 'required|string|max:255',
+            'no_hp_ortu' => 'required|string|max:20',
+            'jurusan_pilihan' => 'required|string|max:100',
         ]);
 
         $validated['user_id'] = $user->id;
@@ -60,7 +60,7 @@ class PpdbController extends Controller
 
     public function status()
     {
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 

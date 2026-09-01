@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="{{ asset('storage/' . $settings['school_logo']) }}" type="image/x-icon">
     @endif
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         :root {
             --sidebar-width: 250px;
@@ -111,8 +112,32 @@
             transform: translateY(0);
         }
 
+        /* Alert Custom Minimalist Styling */
         .alert {
+            border-radius: 12px !important;
+            border: 1px solid transparent !important;
+            box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.04) !important;
             animation: slideInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .alert-success {
+            background-color: #ecfdf5 !important;
+            border-color: rgba(16, 185, 129, 0.25) !important;
+            color: #065f46 !important;
+        }
+        .alert-info {
+            background-color: #f0f9ff !important;
+            border-color: rgba(56, 189, 248, 0.25) !important;
+            color: #0369a1 !important;
+        }
+        .alert-warning {
+            background-color: #fffbeb !important;
+            border-color: rgba(245, 158, 11, 0.25) !important;
+            color: #92400e !important;
+        }
+        .alert-danger {
+            background-color: #fef2f2 !important;
+            border-color: rgba(239, 68, 68, 0.25) !important;
+            color: #991b1b !important;
         }
 
         @keyframes slideInDown {
@@ -195,18 +220,13 @@
 
         <!-- MAIN CONTENT -->
         <div class="flex-grow-1 p-4" style="animation: fadeIn 0.4s ease forwards;">
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-            
-            @if (session('error'))
-                <div class="alert alert-danger">{{ session('error') }}</div>
-            @endif
+            @include('partials.alerts')
             
             @yield('content')
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

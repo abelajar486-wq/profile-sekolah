@@ -1,14 +1,14 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="py-5 bg-white">
+<div class="py-5 bg-white section-reveal">
     <div class="container py-4">
         <!-- Hero Section PPDB -->
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold mb-3">Tahun Ajaran {{ date('Y') }}/{{ date('Y')+1 }}</span>
-            <h1 class="fw-bold display-5 mb-3">Pendaftaran Peserta Didik Baru (PPDB)</h1>
-            <p class="text-muted mx-auto fs-5" style="max-width: 650px;">Selamat datang calon siswa unggulan! Bergabunglah bersama {{ $settings['school_name'] ?? 'Sekolah Kami' }} dan raih masa depan gemilang dengan pendidikan berkualitas.</p>
-            <div class="mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold mb-3 stagger-item">Tahun Ajaran {{ date('Y') }}/{{ date('Y')+1 }}</span>
+            <h1 class="fw-bold display-5 mb-3 stagger-item" style="transition-delay: 80ms;">Pendaftaran Peserta Didik Baru (PPDB)</h1>
+            <p class="text-muted mx-auto fs-5 stagger-item" style="max-width: 650px; transition-delay: 160ms;">Selamat datang calon siswa unggulan! Bergabunglah bersama {{ $settings['school_name'] ?? 'Sekolah Kami' }} dan raih masa depan gemilang dengan pendidikan berkualitas.</p>
+            <div class="mt-4 stagger-item" style="transition-delay: 240ms;" data-aos="zoom-in" data-aos-delay="200">
                 @auth
                     <a href="{{ route('ppdb.create') }}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold shadow-sm animate-pulse-glow">
                         <i class="bi bi-pencil-square me-2"></i> Isi Formulir Pendaftaran
@@ -23,7 +23,7 @@
 
         <!-- Alur Pendaftaran -->
         <div class="row g-4 mb-5">
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-md-4 stagger-item" style="transition-delay: 0ms;" data-aos="fade-up" data-aos-delay="100">
                 <div class="card border-0 shadow-sm card-hover h-100 rounded-4">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center mb-3 icon-box-animate" style="width: 65px; height: 65px;">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-md-4 stagger-item" style="transition-delay: 120ms;" data-aos="fade-up" data-aos-delay="200">
                 <div class="card border-0 shadow-sm card-hover h-100 rounded-4">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-success bg-opacity-10 text-success d-inline-flex align-items-center justify-content-center mb-3 icon-box-animate" style="width: 65px; height: 65px;">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-md-4 stagger-item" style="transition-delay: 240ms;" data-aos="fade-up" data-aos-delay="300">
                 <div class="card border-0 shadow-sm card-hover h-100 rounded-4">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-warning bg-opacity-10 text-warning d-inline-flex align-items-center justify-content-center mb-3 icon-box-animate" style="width: 65px; height: 65px;">
@@ -71,7 +71,7 @@
 
                 <div class="row g-4 mb-4">
                     <!-- Biaya Pendaftaran -->
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="col-md-4 stagger-item" style="transition-delay: 0ms;" data-aos="zoom-in" data-aos-delay="100">
                         <div class="card border-0 shadow-sm card-hover rounded-4 h-100 bg-white">
                             <div class="card-body p-4 text-center">
                                 <div class="badge bg-info bg-opacity-10 text-info px-3 py-2 rounded-pill fw-bold mb-3">Biaya Form Pendaftaran</div>
@@ -88,7 +88,7 @@
                     </div>
 
                     <!-- Uang Pangkal / Biaya Masuk -->
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="col-md-4 stagger-item" style="transition-delay: 120ms;" data-aos="zoom-in" data-aos-delay="200">
                         <div class="card border-primary border-2 shadow card-hover rounded-4 h-100 bg-white position-relative overflow-hidden">
                             <div class="position-absolute top-0 end-0 bg-primary text-white text-uppercase px-3 py-1 fw-bold small rounded-bl">Populer</div>
                             <div class="card-body p-4 text-center">
@@ -108,7 +108,7 @@
                     </div>
 
                     <!-- SPP Bulanan -->
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="col-md-4 stagger-item" style="transition-delay: 240ms;" data-aos="zoom-in" data-aos-delay="300">
                         <div class="card border-0 shadow-sm card-hover rounded-4 h-100 bg-white">
                             <div class="card-body p-4 text-center">
                                 <div class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-bold mb-3">SPP Per Bulan</div>
@@ -127,7 +127,7 @@
                 </div>
 
                 <!-- Skema Gelombang Pendaftaran & Diskon -->
-                <div class="bg-white p-4 rounded-4 shadow-sm mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white p-4 rounded-4 shadow-sm mb-4 stagger-item" style="transition-delay: 100ms;" data-aos="fade-up" data-aos-delay="100">
                     <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-calendar-event text-primary me-2"></i> Jadwal Gelombang Pendaftaran & Potongan Khusus</h5>
                     <div class="table-responsive">
                         <table class="table table-hover align-middle mb-0">
@@ -165,7 +165,7 @@
 
                 <!-- Metode Pembayaran & Rekening Bank -->
                 <div class="row g-4">
-                    <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+                    <div class="col-md-6 stagger-item" style="transition-delay: 0ms;" data-aos="fade-right" data-aos-delay="200">
                         <div class="bg-white p-4 rounded-4 shadow-sm h-100">
                             <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-bank text-primary me-2"></i> Metode & Kanal Pembayaran</h5>
                             <p class="text-muted small mb-3">Pembayaran dapat dilakukan secara tunai melalui loket keuangan sekolah atau transfer ke rekening resmi:</p>
@@ -189,7 +189,7 @@
                     </div>
 
                     <!-- Program Beasiswa & Bantuan -->
-                    <div class="col-md-6" data-aos="fade-left" data-aos-delay="300">
+                    <div class="col-md-6 stagger-item" style="transition-delay: 120ms;" data-aos="fade-left" data-aos-delay="300">
                         <div class="bg-white p-4 rounded-4 shadow-sm h-100">
                             <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-award text-warning me-2"></i> Program Beasiswa & Potongan Khusus</h5>
                             <ul class="list-unstyled mb-0 text-secondary small d-flex flex-column gap-3">

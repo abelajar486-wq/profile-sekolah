@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\GalleryController as AdminGallery;
+use App\Http\Controllers\Admin\PpdbController as AdminPpdb;
 use App\Http\Controllers\Admin\SettingController as AdminSetting;
 use App\Http\Controllers\Admin\UserController as AdminUser;
-use App\Http\Controllers\Admin\PpdbController as AdminPpdb;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImageOptimizationController;
+use App\Http\Controllers\PpdbController;
+use App\Http\Controllers\PublicController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 // ==========================================
 // 1. PUBLIC ROUTES
@@ -18,6 +19,13 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/about', [PublicController::class, 'about'])->name('about');
 Route::get('/gallery', [PublicController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+Route::get('/optimized-image/{path}', [ImageOptimizationController::class, 'show'])->where('path', '.*')->name('image.optimized');
+
+Route::post('/gallery/{gallery}/like', [PublicController::class, 'toggleLike'])->name('gallery.like');
+Route::post('/gallery/{gallery}/comment', [PublicController::class, 'storeComment'])->name('gallery.comment');
+Route::get('/gallery/{gallery}/comments', [PublicController::class, 'getComments'])->name('gallery.comments');
+Route::post('/gallery/comment/{comment}/like', [PublicController::class, 'toggleCommentLike'])->name('gallery.comment.like');
+Route::delete('/gallery/comment/{comment}', [PublicController::class, 'destroyComment'])->name('gallery.comment.destroy');
 
 // PPDB Public Routes
 Route::get('/ppdb', [PpdbController::class, 'info'])->name('ppdb.info');
@@ -50,7 +58,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 // ==========================================
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
-    
+
     // CRUD Gallery
     Route::resource('gallery', AdminGallery::class);
 

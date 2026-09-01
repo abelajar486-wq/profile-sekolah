@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithTitle;
 class PpdbExport implements FromView, ShouldAutoSize, WithTitle
 {
     protected $registrations;
+
     protected $settings;
 
     public function __construct($registrations, $settings = [])
@@ -22,7 +23,7 @@ class PpdbExport implements FromView, ShouldAutoSize, WithTitle
     {
         return view('admin.ppdb.excel', [
             'registrations' => $this->registrations,
-            'settings'      => $this->settings,
+            'settings' => $this->settings,
         ]);
     }
 

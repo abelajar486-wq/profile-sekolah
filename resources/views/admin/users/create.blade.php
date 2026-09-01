@@ -6,8 +6,8 @@
     <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Kembali</a>
 </div>
 
-<div class="card col-md-8 shadow-sm">
-    <div class="card-body">
+<div class="card col-md-8 shadow-sm border-0">
+    <div class="card-body p-4">
         <form action="{{ route('admin.users.store') }}" method="POST">
             @csrf
 
@@ -45,15 +45,25 @@
 
             <div class="mb-3">
                 <label class="form-label fw-bold">Password <span class="text-danger">*</span></label>
-                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Minimal 6 karakter" required>
-                @error('password')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <div class="input-group">
+                    <input type="password" name="password" id="adminCreatePass" class="form-control @error('password') is-invalid @enderror" placeholder="Minimal 6 karakter" required>
+                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="adminCreatePass" title="Lihat/Sembunyikan Password">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                    @error('password')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label fw-bold">Konfirmasi Password <span class="text-danger">*</span></label>
-                <input type="password" name="password_confirmation" class="form-control" placeholder="Ulangi password" required>
+                <div class="input-group">
+                    <input type="password" name="password_confirmation" id="adminCreatePassConfirm" class="form-control" placeholder="Ulangi password" required>
+                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="adminCreatePassConfirm" title="Lihat/Sembunyikan Password">
+                        <i class="bi bi-eye"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -78,8 +88,29 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success px-4">Simpan User</button>
+            <button type="submit" class="btn btn-success px-4 shadow-sm">Simpan User</button>
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toggle-password').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+    });
+});
+</script>
 @endsection

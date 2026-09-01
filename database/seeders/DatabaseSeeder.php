@@ -13,16 +13,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Akun Admin Bawaan
         User::updateOrCreate(
             ['email' => 'admin@sekolah.sch.id'],
             [
-                'name'              => 'Administrator',
-                'username'          => 'admin',
-                'password'          => Hash::make('password123'),
-                'role'              => 'admin',
+                'name' => 'Administrator',
+                'username' => 'admin',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
                 'email_verified_at' => now(),
             ]
         );
     }
 }
-

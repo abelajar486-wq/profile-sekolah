@@ -18,9 +18,9 @@ class UserController extends Controller
 
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%')
-                  ->orWhere('email', 'like', '%' . $request->search . '%')
-                  ->orWhere('username', 'like', '%' . $request->search . '%');
+                $q->where('name', 'like', '%'.$request->search.'%')
+                    ->orWhere('email', 'like', '%'.$request->search.'%')
+                    ->orWhere('username', 'like', '%'.$request->search.'%');
             });
         }
 
@@ -43,12 +43,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'username'    => 'nullable|string|max:255|unique:users,username',
-            'email'       => 'required|email|unique:users,email',
-            'alamat'      => 'nullable|string|max:500',
-            'password'    => 'required|min:6|confirmed',
-            'role'        => 'required|in:admin,user',
+            'name' => 'required|string|max:255',
+            'username' => 'nullable|string|max:255|unique:users,username',
+            'email' => 'required|email|unique:users,email',
+            'alamat' => 'nullable|string|max:500',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required|in:admin,user',
             'is_verified' => 'nullable|in:0,1',
         ]);
 
@@ -75,16 +75,16 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'username'    => 'nullable|string|max:255|unique:users,username,' . $user->id,
-            'email'       => 'required|email|unique:users,email,' . $user->id,
-            'alamat'      => 'nullable|string|max:500',
-            'password'    => 'nullable|min:6|confirmed',
-            'role'        => 'required|in:admin,user',
+            'name' => 'required|string|max:255',
+            'username' => 'nullable|string|max:255|unique:users,username,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'alamat' => 'nullable|string|max:500',
+            'password' => 'nullable|min:6|confirmed',
+            'role' => 'required|in:admin,user',
             'is_verified' => 'nullable|in:0,1',
         ]);
 
-        if (!empty($validated['password'])) {
+        if (! empty($validated['password'])) {
             $validated['password'] = Hash::make($validated['password']);
         } else {
             unset($validated['password']);
@@ -93,6 +93,29 @@ class UserController extends Controller
         if (isset($validated['is_verified'])) {
             $validated['email_verified_at'] = ($validated['is_verified'] == '1') ? ($user->email_verified_at ?? now()) : null;
             unset($validated['is_verified']);
+        }
+
+        $hasChange = false;
+
+        $textKeys = ['name', 'username', 'email', 'alamat', 'role'];
+
+        foreach ($textKeys as $key) {
+            $newVal = isset($validated[$key]) ? trim((string) $validated[$key]) : '';
+            $oldVal = isset($user->{$key}) ? trim((string) $user->{$key}) : '';
+            if ($newVal !== $oldVal) {
+                $hasChange = true;
+                break;
+            }
+        }
+
+        $newVerified = isset($validated['is_verified']) ? ($validated['is_verified'] == '1') : false;
+        $oldVerified = ! is_null($user->email_verified_at);
+        if ($newVerified !== $oldVerified) {
+            $hasChange = true;
+        }
+
+        if (! $hasChange) {
+            return redirect()->route('admin.users.index')->with('info', 'Tidak ada perubahan pada data user.');
         }
 
         $user->update($validated);

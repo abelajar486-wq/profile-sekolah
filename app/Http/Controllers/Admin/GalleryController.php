@@ -16,6 +16,7 @@ class GalleryController extends Controller
     {
         // Menggunakan paginate agar tampilan tabel tidak terlalu panjang jika data banyak
         $galleries = Gallery::latest()->paginate(10);
+
         return view('admin.gallery.index', compact('galleries'));
     }
 
@@ -33,17 +34,19 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'       => 'required|string|max:255',
-            'image'       => 'required|image|mimes:jpg,jpeg,png,gif,webp,bmp,svg',
+            'title' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif,webp,bmp,svg',
             'description' => 'nullable|string',
+            'upload_date' => 'nullable|date',
         ]);
 
         $imagePath = $request->file('image')->store('galleries', 'public');
 
         Gallery::create([
-            'title'       => $request->title,
-            'image'       => $imagePath,
+            'title' => $request->title,
+            'image' => $imagePath,
             'description' => $request->description,
+            'upload_date' => $request->upload_date ?? now(),
         ]);
 
         return redirect()->route('admin.gallery.index')->with('success', 'Foto galeri berhasil ditambahkan!');
@@ -71,14 +74,16 @@ class GalleryController extends Controller
     public function update(Request $request, Gallery $gallery)
     {
         $request->validate([
-            'title'       => 'required|string|max:255',
-            'image'       => 'nullable|image|mimes:jpg,jpeg,png,gif,webp,bmp,svg',
+            'title' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp,bmp,svg',
             'description' => 'nullable|string',
+            'upload_date' => 'nullable|date',
         ]);
 
         $data = [
-            'title'       => $request->title,
+            'title' => $request->title,
             'description' => $request->description,
+            'upload_date' => $request->upload_date ?? $gallery->upload_date ?? now(),
         ];
 
         // Cek jika pengguna mengunggah gambar baru
@@ -90,6 +95,27 @@ class GalleryController extends Controller
 
             // Simpan gambar baru
             $data['image'] = $request->file('image')->store('galleries', 'public');
+        }
+
+        $hasChange = false;
+
+        $textKeys = ['title', 'description', 'upload_date'];
+
+        foreach ($textKeys as $key) {
+            $newVal = isset($data[$key]) ? trim((string) $data[$key]) : '';
+            $oldVal = isset($gallery->{$key}) ? trim((string) $gallery->{$key}) : '';
+            if ($newVal !== $oldVal) {
+                $hasChange = true;
+                break;
+            }
+        }
+
+        if ($request->hasFile('image')) {
+            $hasChange = true;
+        }
+
+        if (! $hasChange) {
+            return redirect()->route('admin.gallery.index')->with('info', 'Tidak ada perubahan dalam foto galeri.');
         }
 
         $gallery->update($data);
@@ -107,6 +133,7 @@ class GalleryController extends Controller
         }
 
         $gallery->delete();
+
         return redirect()->route('admin.gallery.index')->with('success', 'Foto galeri berhasil dihapus!');
     }
 }

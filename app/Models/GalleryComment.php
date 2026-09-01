@@ -5,29 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gallery extends Model
+class GalleryComment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'description',
-        'image',
-        'upload_date',
+        'gallery_id',
+        'user_id',
+        'name',
+        'comment',
     ];
 
-    protected $casts = [
-        'upload_date' => 'date',
-    ];
-
-    public function comments()
+    public function gallery()
     {
-        return $this->hasMany(GalleryComment::class);
+        return $this->belongsTo(Gallery::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function likes()
     {
-        return $this->hasMany(GalleryLike::class);
+        return $this->hasMany(GalleryCommentLike::class);
     }
 
     public function todayLikes()

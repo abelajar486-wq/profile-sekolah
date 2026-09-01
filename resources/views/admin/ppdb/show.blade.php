@@ -44,8 +44,9 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label fw-bold">Catatan Admin</label>
-                <textarea name="catatan_admin" class="form-control @error('catatan_admin') is-invalid @enderror" rows="3" placeholder="Tulis catatan jika perlu...">{{ old('catatan_admin', $ppdb->catatan_admin) }}</textarea>
+                <label class="form-label fw-bold">Catatan / Pesan untuk Pendaftar</label>
+                <textarea name="catatan_admin" class="form-control @error('catatan_admin') is-invalid @enderror" rows="3" placeholder="Tulis catatan jika ada pesan khusus...">{{ old('catatan_admin', $ppdb->catatan_admin) }}</textarea>
+                <div class="form-text text-muted"><i class="bi bi-info-circle me-1"></i>Jika dikosongkan, sistem akan otomatis mengirimkan kata-kata semangat acak (bila ditolak) atau pesan ucapan selamat (bila diterima) kepada pendaftar.</div>
                 @error('catatan_admin')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 

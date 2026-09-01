@@ -36,6 +36,15 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label class="form-label fw-bold">Tanggal Upload</label>
+                <input type="date" name="upload_date" class="form-control @error('upload_date') is-invalid @enderror" value="{{ old('upload_date', now()->format('Y-m-d')) }}">
+                <small class="text-muted">Biarkan tanggal hari ini jika ingin menggunakan tanggal unggah otomatis.</small>
+                @error('upload_date')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-success px-4">Upload Foto</button>
         </form>
     </div>

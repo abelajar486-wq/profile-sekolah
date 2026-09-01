@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Schema;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,10 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (Schema::hasTable('settings')) {
-            $settings = Setting::pluck('value', 'key')->toArray();
-            View::share('settings', $settings);
-        }
+        View::composer('*', function ($view) {
+            if (Schema::hasTable('settings')) {
+                $settings = Setting::pluck('value', 'key')->toArray();
+                $view->with('settings', $settings);
+            }
+        });
     }
 }
-

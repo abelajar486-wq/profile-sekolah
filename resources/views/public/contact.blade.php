@@ -1,17 +1,17 @@
 @extends('layouts.public')
 
 @section('content')
-<div class="py-5 bg-white">
+<div class="py-5 bg-white section-reveal">
     <div class="container py-5">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold mb-2">Layanan Informasi</span>
-            <h1 class="fw-bold display-5">Hubungi Kami</h1>
-            <p class="text-muted mx-auto" style="max-width: 550px;">Silakan hubungi tim kami untuk informasi pendaftaran PPDB, program keahlian, atau konsultasi fasilitas sekolah.</p>
+            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold mb-2 stagger-item">Layanan Informasi</span>
+            <h1 class="fw-bold display-5 stagger-item" style="transition-delay: 80ms;">Hubungi Kami</h1>
+            <p class="text-muted mx-auto stagger-item" style="max-width: 550px; transition-delay: 160ms;">Silakan hubungi tim kami untuk informasi pendaftaran PPDB, program keahlian, atau konsultasi fasilitas sekolah.</p>
         </div>
 
         <!-- Kartu Kontak Utama -->
         <div class="row g-4 mb-5">
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-md-4 stagger-item" style="transition-delay: 0ms;" data-aos="fade-up" data-aos-delay="100">
                 <div class="card border-0 shadow-sm card-hover h-100 rounded-4">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center mb-3 icon-box-animate" style="width: 60px; height: 60px;">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-md-4 stagger-item" style="transition-delay: 120ms;" data-aos="fade-up" data-aos-delay="200">
                 <div class="card border-0 shadow-sm card-hover h-100 rounded-4">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center mb-3 icon-box-animate" style="width: 60px; height: 60px;">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="col-md-4 stagger-item" style="transition-delay: 240ms;" data-aos="fade-up" data-aos-delay="300">
                 <div class="card border-0 shadow-sm card-hover h-100 rounded-4">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex align-items-center justify-content-center mb-3 icon-box-animate" style="width: 60px; height: 60px;">
@@ -103,7 +103,7 @@
         @endif
 
         <!-- Embed Maps Card -->
-        <div class="card border-0 shadow-sm rounded-4 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden stagger-item" style="transition-delay: 100ms;" data-aos="fade-up" data-aos-delay="200">
             <div class="card-body p-0">
                 <div class="ratio ratio-21x9">
                     @if(!empty($settings['maps_embed']))

@@ -12,7 +12,7 @@ class AdminAuth
     public function handle(Request $request, Closure $next): Response
     {
         // 1. Jika belum login, arahkan ke login
-        if (!Auth::check()) {
+        if (! Auth::check()) {
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu!');
         }
 
@@ -23,5 +23,4 @@ class AdminAuth
 
         return $next($request);
     }
-
 }

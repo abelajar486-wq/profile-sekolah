@@ -10,6 +10,7 @@
         <link rel="shortcut icon" href="{{ asset('storage/' . $settings['school_logo']) }}" type="image/x-icon">
     @endif
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
@@ -123,9 +124,32 @@
             transform: translateY(0);
         }
 
-        /* Alert Slide In */
+        /* Alert Custom Minimalist Styling */
         .alert {
+            border-radius: 12px !important;
+            border: 1px solid transparent !important;
+            box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.04) !important;
             animation: slideInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .alert-success {
+            background-color: #ecfdf5 !important;
+            border-color: rgba(16, 185, 129, 0.25) !important;
+            color: #065f46 !important;
+        }
+        .alert-info {
+            background-color: #f0f9ff !important;
+            border-color: rgba(56, 189, 248, 0.25) !important;
+            color: #0369a1 !important;
+        }
+        .alert-warning {
+            background-color: #fffbeb !important;
+            border-color: rgba(245, 158, 11, 0.25) !important;
+            color: #92400e !important;
+        }
+        .alert-danger {
+            background-color: #fef2f2 !important;
+            border-color: rgba(239, 68, 68, 0.25) !important;
+            color: #991b1b !important;
         }
 
         @keyframes slideInDown {
@@ -137,6 +161,42 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Custom Elegant Table Layout Styling */
+        .table {
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+        .table thead th {
+            background-color: #1e293b !important;
+            color: #f8fafc !important;
+            font-size: 0.8rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px !important;
+            text-transform: uppercase !important;
+            padding: 0.85rem 1rem !important;
+            vertical-align: middle !important;
+            border-bottom: none !important;
+            white-space: nowrap !important;
+        }
+        .table tbody td {
+            padding: 0.85rem 1rem !important;
+            vertical-align: middle !important;
+            color: #334155;
+            font-size: 0.9rem;
+            border-color: #f1f5f9;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f8fafc;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(13, 110, 253, 0.04) !important;
+        }
+        .table-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         /* Input Focus Animation */
@@ -228,14 +288,13 @@
 
         <!-- MAIN CONTENT -->
         <div class="flex-grow-1 p-4" style="animation: fadeIn 0.4s ease forwards;">
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+            @include('partials.alerts')
             
             @yield('content')
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
